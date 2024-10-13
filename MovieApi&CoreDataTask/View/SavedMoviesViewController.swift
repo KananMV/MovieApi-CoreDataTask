@@ -4,7 +4,9 @@ import SnapKit
 class SavedMoviesViewController: UIViewController {
     private var favoriteMovies: [ListEntity] = []
     private let viewModel = FavoritesViewModel()
+    private let movieModel = MovieViewModel()
     private lazy var detailsVC = DetailsViewController()
+    var imdbID: String!
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -57,6 +59,37 @@ extension SavedMoviesViewController: UITableViewDelegate, UITableViewDataSource 
         return favoriteMovies.count
     }
     
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let movieToDelete = favoriteMovies[indexPath.row]
+//            if let movieID = movieToDelete.imdbID {
+//                if let movieEntity = viewModel.fetchEntityByID(id: movieID) {
+//                    viewModel.removeMovie(movie: movieEntity)
+//                } else {
+//                    print("Movie with imdbID \(movieID) not found in Core Data.")
+//                }
+//            }
+//        }
+//        fetchFavorites()
+//    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+            let movieToDelete = self?.favoriteMovies[indexPath.row]
+            if let movieID = movieToDelete?.imdbID {
+                if let movieEntity = self?.viewModel.fetchEntityByID(id: movieID) {
+                    self?.viewModel.removeMovie(movie: movieEntity)
+                    self?.favoriteMovies.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+            completionHandler(true)
+        }
+        deleteAction.backgroundColor = .red
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell", for: indexPath) as! FavoriteCell
         let movie = favoriteMovies[indexPath.row]

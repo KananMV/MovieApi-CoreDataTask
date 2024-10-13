@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E2E1D8A2CAC1BA6000157AB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6E2E1D892CAC1BA6000157AB /* SnapKit */; };
+		6E3559692CBBE9AC00801DA1 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6E3559682CBBE9AC00801DA1 /* Alamofire */; };
 		6E4488082CAD51EA00EA8D85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4488072CAD51EA00EA8D85 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E3559692CBBE9AC00801DA1 /* Alamofire in Frameworks */,
 				6E4488082CAD51EA00EA8D85 /* Kingfisher in Frameworks */,
 				6E2E1D8A2CAC1BA6000157AB /* SnapKit in Frameworks */,
 			);
@@ -87,6 +89,7 @@
 			packageProductDependencies = (
 				6E2E1D892CAC1BA6000157AB /* SnapKit */,
 				6E4488072CAD51EA00EA8D85 /* Kingfisher */,
+				6E3559682CBBE9AC00801DA1 /* Alamofire */,
 			);
 			productName = "MovieApi&CoreDataTask";
 			productReference = 6E2E1D5D2CABF2DE000157AB /* MovieApi&CoreDataTask.app */;
@@ -119,6 +122,7 @@
 			packageReferences = (
 				6E2E1D882CAC1BA6000157AB /* XCRemoteSwiftPackageReference "SnapKit" */,
 				6E4488062CAD51EA00EA8D85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6E3559672CBBE9AC00801DA1 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6E2E1D5E2CABF2DE000157AB /* Products */;
@@ -358,6 +362,14 @@
 				version = 5.7.1;
 			};
 		};
+		6E3559672CBBE9AC00801DA1 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
 		6E4488062CAD51EA00EA8D85 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -373,6 +385,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6E2E1D882CAC1BA6000157AB /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		6E3559682CBBE9AC00801DA1 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6E3559672CBBE9AC00801DA1 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		6E4488072CAD51EA00EA8D85 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
