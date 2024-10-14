@@ -72,27 +72,24 @@ extension SearchViewController: UITextFieldDelegate {
         return true
     }
 }
-extension SearchViewController: UIScrollViewDelegate{
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offsetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
-        let height = scrollView.frame.size.height
-        if offsetY >= contentHeight - height - 100 {
-            let title = customSearch.textField.text ?? ""
-            viewModel.fetchMoreMovies(title: title) {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
-        }
-    }
-}
 extension SearchViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.movies.count
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let totalItems = viewModel.movies.count
+        let title = customSearch.textField.text ?? ""
+
+        if indexPath.row == totalItems - 1 {
+            viewModel.fetchMoreMovies(title: title) {
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 16

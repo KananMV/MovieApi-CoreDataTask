@@ -259,6 +259,11 @@ class DetailsViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        tabBarController?.isTabBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tabBarController?.isTabBarHidden = false
     }
     func convertDurationToTimeFormat(duration: String) -> String {
         let components = duration.split(separator: " ")
